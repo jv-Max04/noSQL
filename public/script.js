@@ -15,15 +15,17 @@ form.addEventListener('submit', (e) => {
 
 socket.on('chat message', (msg,usuario) => {
   const item = document.createElement('li');
-  item.textContent = `${usuario}: ${msg}`;
+  item.innerHTML = `<p><b>${usuario}:</b> ${msg}<p>`;
   messages.appendChild(item);
-  window.scrollTo(0, document.body.scrollHeight);
+  document.getElementById("messages").scrollTo(0, document.getElementById("messages").scrollHeight);
 });
 
 socket.on('existentes', (msgs) => {
   msgs.forEach((msg) => {
     const item = document.createElement('li')
-    item.textContent = `${msg.user}: ${msg.msg}`;
+    item.innerHTML = `<p><b>${msg.user}:</b> ${msg.msg}<p>`;
     messages.appendChild(item);
+    document.getElementById("messages").scrollTo(0, document.getElementById("messages").scrollHeight);
   });
 });
+
